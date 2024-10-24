@@ -25,10 +25,10 @@ const Campaigns = async ({ searchParams }) => {
     <div>
       <h1 className="text-xl mb-4">
         {!searchParams.sort
-          ? `All Campaigns (${campaigns?.length ?? 0})`
+          ? `모든 모금 캠페인 (${campaigns?.length ?? 0})`
           : searchParams.sort === "newest"
-          ? `Newest Campaigns (${campaigns?.length ?? 0})`
-          : `Top Campaigns (${campaigns?.length ?? 0})`}
+          ? `최신 모금 캠페인 (${campaigns?.length ?? 0})`
+          : `상위 모금 캠페인 (${campaigns?.length ?? 0})`}
       </h1>
       {campaigns?.length === 0 ? (
         <div className="flex flex-col  justify-center gap-4 mt-10">

@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { Card } from "@/components";
 import Logo from "../../public/Logo.png";
 
@@ -11,10 +10,11 @@ const fetchCampaigns = async () => {
   const data = await res.json();
   var campaigns = data.campaigns;
 
+  console.log("data => ", data);
   if (!campaigns) campaigns = [];
 
   campaigns.sort((a, b) => b.collectedAmount - a.collectedAmount);
-  
+
   const tops = campaigns.slice(0, 9);
   const donationCount = campaigns.reduce(
     (total, campaign) => total + campaign.donations.length,
@@ -46,48 +46,48 @@ const Home = async () => {
               <Image
                 className="hidden md:block"
                 src={Logo}
-                alt="fundseed"
+                alt="pawfund"
                 width={50}
                 height={50}
               />
               <h1 className="text-2xl md:text-4xl font-semibold">
-                Welcome to Fund Seed
+                PawFund에 오신 것을 환영합니다
               </h1>
             </div>
             <p className="text-sm md:text-lg text-neutral-400 mb-8 mt-4">
-              Fund Seed is a decentralized crowdfunding platform built on
-              Ethereum. It allows anyone to create a campaign and raise funds.
-              What we have achieved so far:
+              PawFund는 동물 보호를 위한 블록체인 기반 크라우드 펀딩 플랫폼으로,
+              기부자들이 기부를 통해 동물들의 삶에 긍정적인 영향을 미치고,
+              그들의 발자취를 남기는 상징적인 의미를 담고 있습니다.
             </p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
-            <h5 className="text-center mb-2">All Campaigns</h5>
+            <h5 className="text-center mb-2">전체 캠페인 수</h5>
             <p className="text-2xl font-semibold text-center">
               {campaignCount}
             </p>
           </div>
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
-            <h5 className="text-center mb-2">Total Donations</h5>
+            <h5 className="text-center mb-2">전체 기부 수</h5>
             <p className="text-2xl font-semibold text-center">
               {donationCount}
             </p>
           </div>
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
-            <h5 className="text-center mb-2">Collected Eth</h5>
+            <h5 className="text-center mb-2">모금된 이더리움</h5>
             <p className="text-2xl font-semibold text-center">
               {totalCollected}
             </p>
           </div>
         </div>
       </div>
-      <h1 className="text-xl mb-4">Most Popular Campaigns</h1>
+      <h1 className="text-xl mb-4">가장 인기 있는 캠페인</h1>
       {campaigns?.length === 0 ? (
         <div className="flex flex-col  justify-center gap-4 mt-10">
-          <h1 className="text-4xl font-semibold">No Campaigns Found</h1>
+          <h1 className="text-4xl font-semibold">캠페인을 찾을 수 없습니다</h1>
           <p className="text-lg text-neutral-400">
-            It looks like there are no campaigns created yet.
+            아직 생성된 캠페인이 없는 것 같습니다.
           </p>
         </div>
       ) : (

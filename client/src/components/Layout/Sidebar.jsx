@@ -25,7 +25,7 @@ const Sidebar = () => {
         href="/"
         className="flex items-center p-2 justify-center rounded-lg bg-neutral-800 mb-4"
       >
-        <Image src={Logo} alt="fundseed" priority width={40} height={40} />
+        <Image src={Logo} alt="pawfund" priority width={40} height={40} />
       </Link>
       <div className="flex flex-col bg-neutral-800 p-2 rounded-lg min-h-[calc(100vh-96px)]">
         <div className="flex flex-col gap-3">

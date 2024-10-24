@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity 0.8.19;
+pragma solidity 0.8.27;
 
 contract CrowdFunding {
     uint256 public totalCollected;
@@ -58,6 +57,7 @@ contract CrowdFunding {
     ) public returns (uint256) {
         require(_deadline > block.timestamp, "Deadline must be in the future.");
         require(_target > 0, "Target must be bigger than 0.");
+        require(bytes(_description).length <= 50, "Description must be 50 characters or less");
 
         Campaign storage newCampaign = campaigns[campaignCount];
         newCampaign.owner = msg.sender;

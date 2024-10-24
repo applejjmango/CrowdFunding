@@ -29,8 +29,9 @@ const CampaignDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(amount === 0) return toast.error("Please enter an amount");
-    if(getDaysLeft(campaign.deadline) <= 0) return toast.error("Campaign has ended");
+    if (amount === 0) return toast.error("Please enter an amount");
+    if (getDaysLeft(campaign.deadline) <= 0)
+      return toast.error("Campaign has ended");
 
     setLoading(true);
 
@@ -90,7 +91,13 @@ const CampaignDetails = () => {
           </div>
         </div>
       </div>
-      <div className={`grid gap-4 ${getDaysLeft(campaign?.deadline) > 0 ? 'grid-cols-1 md:grid-cols-4' : 'grid-cols-1'}`}>
+      <div
+        className={`grid gap-4 ${
+          getDaysLeft(campaign?.deadline) > 0
+            ? "grid-cols-1 md:grid-cols-4"
+            : "grid-cols-1"
+        }`}
+      >
         <div className="col-span-4 md:col-span-3">
           <div className="mt-8">
             <h4 className="text-xl font-semibold uppercase mb-2">Creator</h4>
@@ -111,25 +118,33 @@ const CampaignDetails = () => {
           </div>
           <div className="mt-8">
             <h4 className="text-xl font-semibold uppercase mb-2">
-              Top Donations
+              상위 기부자 목록
             </h4>
             <div className="flex flex-col gap-4">
-              { 
-                topDonations?.length > 0 ? topDonations.map((donation, index) => (
+              {topDonations?.length > 0 ? (
+                topDonations.map((donation, index) => (
                   <div key={index} className="bg-neutral-800 p-4 rounded-lg">
                     <p className="text-neutral-400 flex items-center gap-2">
                       <FaEthereum className="text-2xl text-emerald-500" />{" "}
                       <b>
                         {donation.amount}{" "}
-                        <span className="hidden md:inline">Eth</span>
+                        <span className="hidden md:inline">이더 (ETH)</span>
                       </b>{" "}
-                      from <span className="truncate">{donation.donator}</span>
+                      from{" "}
+                      <a
+                        href={`https://sepolia.etherscan.io/address/${donation.donator}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-400 underline truncate"
+                      >
+                        <span className="truncate">{donation.donator}</span>
+                      </a>
                     </p>
                   </div>
-                )) : (
-                  <p className="text-neutral-400">No donations yet.</p>
-                )
-              } 
+                ))
+              ) : (
+                <p className="text-neutral-400">아직 기부자가 없습니다.</p>
+              )}
             </div>
           </div>
         </div>

@@ -16,13 +16,14 @@ import { useEthersContext } from "@/contexts/EthersContext";
 const Topbar = () => {
   const router = useRouter();
   const drawerRef = useRef(null);
-  const { signer, loading, connectWallet, disconnectWallet } = useEthersContext();
+  const { signer, loading, connectWallet, disconnectWallet } =
+    useEthersContext();
   const [toggleDrawer, setToggleDrawer] = useState(false);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (drawerRef.current && !drawerRef.current.contains(event.target))
-      setToggleDrawer(false);
+        setToggleDrawer(false);
     }
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -34,7 +35,7 @@ const Topbar = () => {
   return (
     <div className="flex items-center sticky md:relative top-0 w-full justify-between bg-[#13131a] pb-4 md:pb-0 md:bg-transparent flex-col-reverse sm:flex-row mb-5">
       <Link href="/" className="hidden sm:block md:hidden p-2 rounded-lg">
-        <Image src={Logo} alt="fundseed" priority width={40} height={40} />
+        <Image src={Logo} alt="pawfund" priority width={40} height={40} />
       </Link>
 
       <Searchbar />
@@ -68,7 +69,7 @@ const Topbar = () => {
       {/* SMALL SCREEN */}
       <div className="md:hidden flex justify-between sm:justify-end items-center relative w-full sm:w-auto sm:mb-0 mb-3">
         <Link href="/" className="sm:hidden p-2 rounded-lg">
-          <Image src={Logo} alt="fundseed" priority width={40} height={40} />
+          <Image src={Logo} alt="pawfund" priority width={40} height={40} />
         </Link>
 
         <ClientButton onClick={() => setToggleDrawer((prev) => !prev)}>
@@ -111,7 +112,10 @@ const Topbar = () => {
             ) : null
           )}
           {signer && (
-            <ClientButton onClick={disconnectWallet} className="flex gap-3 items-center p-2 justify-start rounded-lg transition-all duration-200 hover:bg-neutral-700 text-neutral-400">
+            <ClientButton
+              onClick={disconnectWallet}
+              className="flex gap-3 items-center p-2 justify-start rounded-lg transition-all duration-200 hover:bg-neutral-700 text-neutral-400"
+            >
               <FiLogOut className="text-4xl" />
               <p className="font-semibold">Logout</p>
             </ClientButton>

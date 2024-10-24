@@ -43,7 +43,7 @@ const SearchPage = async ({ searchParams }) => {
     return (
       <div>
         <p className="text-lg text-neutral-400">
-          Please search for the campaigns you want in the search box above.
+          찾고자 하는 모금 캠페인을 검색하세요!
         </p>
       </div>
     );

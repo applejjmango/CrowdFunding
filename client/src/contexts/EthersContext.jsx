@@ -23,10 +23,10 @@ export const EthersProvider = ({ children }) => {
       );
       const contractInstance = new ethers.Contract(
         process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-        SmartContract['abi'],
+        SmartContract["abi"],
         provider
       );
-      
+
       setProvider(provider);
       setContract(contractInstance);
       Cookie.get("isAllowed") && connectWallet();
@@ -44,7 +44,7 @@ export const EthersProvider = ({ children }) => {
       const signer = await connectedProvider.getSigner();
       const contractInstance = new ethers.Contract(
         process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-        SmartContract['abi'],
+        SmartContract["abi"],
         signer
       );
 
@@ -68,7 +68,7 @@ export const EthersProvider = ({ children }) => {
     loading,
     contract,
     provider,
-    selectedCampaign, 
+    selectedCampaign,
     connectWallet,
     disconnectWallet,
     setSelectedCampaign,
