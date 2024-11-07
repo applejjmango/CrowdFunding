@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 
-import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 
 const Layout = ({ children }) => {
   return (
@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
           position="bottom-center"
           autoClose={3000}
           hideProgressBar={true}
-          closeOnClick={true}
+          closeOnclick={true}
           pauseOnHover={true}
           draggable={false}
           progress={undefined}

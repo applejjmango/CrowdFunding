@@ -2,7 +2,7 @@
 
 import { ethers } from "ethers";
 import React, { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { FaEthereum } from "react-icons/fa";
 
 import { ClientButton, FormInput } from "@/components";
@@ -36,13 +36,13 @@ const Create = () => {
       !formValues.target ||
       !formValues.deadline
     )
-      return toast.error("Please fill all the fields");
+      return toast.error("모든 필드를 작성해주세요.");
 
     if (!signer) return connectWallet();
-    
+
     try {
       setLoading(true);
-  
+
       const { title, description, imageUrl } = formValues;
       const target = ethers.parseUnits(formValues.target, 18).toString();
       const deadline = new Date(formValues.deadline).getTime();
@@ -55,15 +55,15 @@ const Create = () => {
         deadline,
         { gasLimit: 1000000 }
       );
-      
-      toast.success("Campaign created successfully.");
+
+      toast.success("캠페인이 성공적으로 생성되었습니다.");
       handleReset();
 
       setTimeout(() => {
-        return router.push('/account');
+        return router.push("/account");
       }, 2000);
     } catch (error) {
-      toast.error("Campaign couldn't be created.");
+      toast.error("캠페인을 생성할 수 없습니다.");
     } finally {
       setLoading(false);
     }
@@ -83,7 +83,7 @@ const Create = () => {
     <main className="w-full bg-neutral-800 rounded-lg min-h-[calc(100vh-96px)]">
       <div className="m-auto w-content flex justify-center items-center p-4">
         <h1 className="bg-neutral-700 py-4 px-8 text-2xl font-semibold rounded-lg text-center w-content mx-auto">
-          Start a Campaign
+          캠페인 시작하기
         </h1>
       </div>
       <form
@@ -92,23 +92,23 @@ const Create = () => {
       >
         <div className="flex-col flex md:flex-row gap-4">
           <FormInput
-            label={"Campaign Title"}
-            placeholder={"Write a title..."}
+            label={"캠페인 제목"}
+            placeholder={"제목을 입력하세요..."}
             type={"text"}
             value={formValues.title}
             onChange={(e) => handleFormInputChange("title", e)}
           />
           <FormInput
-            label={"Image URL"}
-            placeholder={"Paste campaign image URL here..."}
+            label={"이미지 URL"}
+            placeholder={"캠페인 이미지 URL을 입력하세요..."}
             type={"text"}
             value={formValues.imageUrl}
             onChange={(e) => handleFormInputChange("imageUrl", e)}
           />
         </div>
         <FormInput
-          label={"Story"}
-          placeholder={"Write why you need this money..."}
+          label={"스토리"}
+          placeholder={"이 캠페인의 필요성을 작성하세요..."}
           type={"textarea"}
           value={formValues.description}
           onChange={(e) => handleFormInputChange("description", e)}
@@ -116,21 +116,21 @@ const Create = () => {
         <div className="flex items-center justify-around gap-4 bg-emerald-500 p-4 md:p-8 rounded-lg text-emerald-300">
           <FaEthereum className="text-5xl" />
           <span className="text-lg sm:text-xl md:text-2xl font-semibold">
-            You will get 99% of the raised amount
+            투명한 캠페인 모금은 PawFund에서
           </span>
           <FaEthereum className="text-5xl" />
         </div>
         <div className="flex-col flex md:flex-row gap-4">
           <FormInput
-            label={"Goal (ETH)"}
-            placeholder={"Write your goal amount..."}
+            label={"목표 (ETH)"}
+            placeholder={"목표 금액을 입력하세요..."}
             type={"number"}
             value={formValues.target}
             onChange={(e) => handleFormInputChange("target", e)}
           />
           <FormInput
-            label={"Deadline"}
-            placeholder={"Pick a deadline..."}
+            label={"마감일"}
+            placeholder={"마감일을 선택하세요..."}
             type={"date"}
             value={formValues.deadline}
             onChange={(e) => handleFormInputChange("deadline", e)}
@@ -143,13 +143,13 @@ const Create = () => {
             onClick={handleSubmit}
             type="submit"
           >
-            Create
+            생성
           </ClientButton>
           <ClientButton
             className="w-28 bg-transparent border-2 text-emerald-500 hover:text-white border-emerald-500 hover:border-emerald-600 hover:bg-emerald-600 transition-all duration-200 p-3 rounded-lg font-semibold"
             onClick={handleReset}
           >
-            Reset
+            초기화
           </ClientButton>
         </div>
       </form>

@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -21,4 +21,29 @@ body{
 
 ::-webkit-scrollbar-track {
   background: rgb(38,38,38);
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f0fdf4; /* 화이트에 가까운 연한 녹색 배경 */
+  color: #2e7d32; /* 친환경 느낌의 진한 녹색 텍스트 */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #66bb6a; /* 밝은 녹색 스크롤바 */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c8e6c9; /* 연한 녹색 트랙 */
 }

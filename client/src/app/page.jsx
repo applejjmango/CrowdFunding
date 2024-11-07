@@ -7,14 +7,16 @@ const fetchCampaigns = async () => {
     method: "GET",
     cache: "no-cache",
   });
-  const data = await res.json();
-  var campaigns = data.campaigns;
 
-  console.log("data => ", data);
-  if (!campaigns) campaigns = [];
+  if (!res.ok) {
+    console.error("Error fetching campaigns:", res.statusText);
+    return { campaigns: [], donationCount: 0, campaignCount: 0 };
+  }
+
+  const data = await res.json();
+  let campaigns = data.campaigns || [];
 
   campaigns.sort((a, b) => b.collectedAmount - a.collectedAmount);
-
   const tops = campaigns.slice(0, 9);
   const donationCount = campaigns.reduce(
     (total, campaign) => total + campaign.donations.length,

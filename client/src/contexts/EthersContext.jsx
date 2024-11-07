@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import SmartContract from "../../../smart-contract/artifacts/contracts/CrowdFunding.sol/CrowdFunding.json";
+import SmartContract from "../../artifacts/contracts/CrowdFunding.sol/CrowdFunding.json";
 
 const EthersContext = createContext();
 

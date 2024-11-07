@@ -1,6 +1,6 @@
 {
-  "name": "crowdfunding-dapp",
-  "version": "0.1.0",
+  "name": "PawFund",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

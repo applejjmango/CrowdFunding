@@ -35,7 +35,7 @@ const Topbar = () => {
   return (
     <div className="flex items-center sticky md:relative top-0 w-full justify-between bg-[#13131a] pb-4 md:pb-0 md:bg-transparent flex-col-reverse sm:flex-row mb-5">
       <Link href="/" className="hidden sm:block md:hidden p-2 rounded-lg">
-        <Image src={Logo} alt="pawfund" priority width={40} height={40} />
+        <Image src={Logo} alt="fundseed" priority width={40} height={40} />
       </Link>
 
       <Searchbar />
@@ -49,7 +49,7 @@ const Topbar = () => {
               loading={loading}
               className="bg-emerald-500 hover:bg-emerald-600 transition-all duration-200 p-3 rounded-lg font-semibold"
             >
-              Create Campaign
+              캠페인 생성
             </ClientButton>
             <Link href="/account" className="bg-neutral-800 rounded-full p-3">
               <Image src={Logo} alt="user" width={24} height={24} />
@@ -61,7 +61,7 @@ const Topbar = () => {
             loading={loading}
             className="bg-emerald-500 hover:bg-emerald-600 transition-all duration-200 p-3 rounded-lg font-semibold"
           >
-            Connect
+            지갑 연결
           </ClientButton>
         )}
       </div>
@@ -69,7 +69,7 @@ const Topbar = () => {
       {/* SMALL SCREEN */}
       <div className="md:hidden flex justify-between sm:justify-end items-center relative w-full sm:w-auto sm:mb-0 mb-3">
         <Link href="/" className="sm:hidden p-2 rounded-lg">
-          <Image src={Logo} alt="pawfund" priority width={40} height={40} />
+          <Image src={Logo} alt="fundseed" priority width={40} height={40} />
         </Link>
 
         <ClientButton onClick={() => setToggleDrawer((prev) => !prev)}>
@@ -79,9 +79,9 @@ const Topbar = () => {
         <div
           ref={drawerRef}
           className={`
-            absolute w-[calc(100vw-32px)] transition-all duration-700 z-50 flex flex-col gap-2 sm:w-[50vw] p-2 top-16 rounded-lg right-0 ml-4 bg-neutral-800 
-            ${!toggleDrawer ? "-translate-y-[100vh]" : "translate-y-0"}
-          `}
+        absolute w-[calc(100vw-32px)] transition-all duration-700 z-50 flex flex-col gap-2 sm:w-[50vw] p-2 top-16 rounded-lg right-0 ml-4 bg-neutral-800 
+        ${!toggleDrawer ? "-translate-y-[100vh]" : "translate-y-0"}
+      `}
         >
           {signer ? (
             <ClientButton
@@ -89,7 +89,7 @@ const Topbar = () => {
               onClick={() => router.push("/create")}
               className="bg-emerald-500 hover:bg-emerald-600 transition-all flex justify-center duration-200 p-3 rounded-lg font-semibold w-full"
             >
-              Create Campaign
+              캠페인 생성
             </ClientButton>
           ) : (
             <ClientButton
@@ -97,7 +97,7 @@ const Topbar = () => {
               onClick={connectWallet}
               className="bg-emerald-500 hover:bg-emerald-600 transition-all duration-200 p-3 rounded-lg font-semibold w-full"
             >
-              Connect
+              지갑 연결
             </ClientButton>
           )}
           {navLinks.map((link, index) =>
@@ -117,7 +117,7 @@ const Topbar = () => {
               className="flex gap-3 items-center p-2 justify-start rounded-lg transition-all duration-200 hover:bg-neutral-700 text-neutral-400"
             >
               <FiLogOut className="text-4xl" />
-              <p className="font-semibold">Logout</p>
+              <p className="font-semibold">로그아웃 </p>
             </ClientButton>
           )}
         </div>
