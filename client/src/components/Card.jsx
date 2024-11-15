@@ -49,19 +49,24 @@ const Card = ({ campaign, user }) => {
         <p className="truncate pb-4 text-neutral-400">{campaign.description}</p>
         <div className="flex justify-between pb-4 gap-4">
           <div className="flex flex-col overflow-hidden">
-            <span className="text-neutral-300">{campaign.collectedAmount}</span>
+            <span className="text-neutral-300">
+              현재 모인 금액 {campaign.collectedAmount} ETH
+            </span>
             <span className="text-neutral-400 truncate">
-              Raised of {campaign.target}
+              목표 금액: {campaign.target} ETH
             </span>
           </div>
           <div className="flex flex-col overflow-hidden">
             <span className="text-neutral-300">
               {getDaysLeft(campaign.deadline) > 0
-                ? getDaysLeft(campaign.deadline)
-                : "Ended"}
+                ? `${getDaysLeft(campaign.deadline)}일`
+                : ""}
             </span>
+
             <span className="text-neutral-400">
-              {getDaysLeft(campaign.deadline) > 0 ? "Days Left" : "Campaign"}
+              {getDaysLeft(campaign.deadline) > 0
+                ? "남은 기간"
+                : "모금 활동 종료"}
             </span>
           </div>
         </div>
@@ -71,13 +76,13 @@ const Card = ({ campaign, user }) => {
               onClick={(e) => handleClickButton(e, "withdraw")}
               className="bg-emerald-500 rounded-lg border-2 border-emerald-500 hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-200 w-full p-2"
             >
-              Withdraw
+              출금
             </ClientButton>
             <ClientButton
               onClick={(e) => handleClickButton(e, "end")}
               className="bg-transparent text-emerald-500 rounded-lg border-2 border-emerald-500 hover:bg-emerald-600 hover:border-emerald-600 hover:text-neutral-200 transition-all duration-200 w-full p-2"
             >
-              End
+              종료
             </ClientButton>
           </div>
         ) : (
@@ -90,7 +95,10 @@ const Card = ({ campaign, user }) => {
               height={36}
             />
             <p className="text-sm truncate">
-              <span className="text-neutral-400 mr-1">by</span> {campaign.owner}
+              <span className="text-neutral-400 mr-1">캠페인 주최자:</span>{" "}
+              {campaign.owner
+                ? `${campaign.owner.slice(0, 5)}...${campaign.owner.slice(-5)}`
+                : "주소 없음"}
             </p>
           </div>
         )}

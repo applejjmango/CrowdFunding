@@ -29,9 +29,9 @@ const CampaignDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (amount === 0) return toast.error("Please enter an amount");
+    if (amount === 0) return toast.error("금액을 입력해주세요.");
     if (getDaysLeft(campaign.deadline) <= 0)
-      return toast.error("Campaign has ended");
+      return toast.error("모금 활동이 종료되었습니다.");
 
     setLoading(true);
 
@@ -41,9 +41,9 @@ const CampaignDetails = () => {
         gasLimit: 1000000,
       });
 
-      toast.success("Donation Successful!");
+      toast.success("기부가 성공적으로 완료되었습니다!");
     } catch (error) {
-      toast.error("Donation Failed!");
+      toast.error("기부에 실패하였습니다.");
     }
 
     setAmount(0);
@@ -67,26 +67,26 @@ const CampaignDetails = () => {
             <p className="p-4 text-center text-2xl">
               {getDaysLeft(campaign?.deadline) > 0
                 ? getDaysLeft(campaign?.deadline)
-                : "Ended"}
+                : "종료됨"}
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
-              {getDaysLeft(campaign?.deadline) > 0 ? "Days Left" : "Status"}
+              {getDaysLeft(campaign?.deadline) > 0 ? "남은 기간" : "상태"}
             </p>
           </div>
           <div className="rounded-lg bg-neutral-800 min-w-[124px] w-full">
             <p className="p-4 text-center text-2xl">
-              {campaign?.collectedAmount ?? 0}
+              {campaign?.collectedAmount ?? 0} ETH
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
-              Raised of {campaign?.target}
+              목표 금액: {campaign?.target} ETH
             </p>
           </div>
           <div className="rounded-lg bg-neutral-800 min-w-[124px] w-full">
             <p className="p-4 text-center text-2xl">
-              {campaign?.donations?.length ?? 0}
+              {campaign?.donations?.length ?? 0} 회
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
-              Donations
+              총 기부수
             </p>
           </div>
         </div>
@@ -100,7 +100,9 @@ const CampaignDetails = () => {
       >
         <div className="col-span-4 md:col-span-3">
           <div className="mt-8">
-            <h4 className="text-xl font-semibold uppercase mb-2">Creator</h4>
+            <h4 className="text-xl font-semibold uppercase mb-2">
+              모금 활동 주최자
+            </h4>
             <div className="flex items-center gap-2">
               <Image
                 className="p-3 bg-neutral-800 rounded-full"
@@ -109,11 +111,18 @@ const CampaignDetails = () => {
                 width={48}
                 height={48}
               />
-              <p className="truncate text-neutral-400">{campaign?.owner}</p>
+              <a
+                href={`https://sepolia.etherscan.io/address/${campaign?.owner}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 underline truncate"
+              >
+                {campaign?.owner}
+              </a>
             </div>
           </div>
           <div className="mt-8">
-            <h4 className="text-xl font-semibold uppercase mb-2">Story</h4>
+            <h4 className="text-xl font-semibold uppercase mb-2">스토리</h4>
             <p className="text-neutral-400">{campaign?.description}</p>
           </div>
           <div className="mt-8">
@@ -130,7 +139,7 @@ const CampaignDetails = () => {
                         {donation.amount}{" "}
                         <span className="hidden md:inline">이더 (ETH)</span>
                       </b>{" "}
-                      from{" "}
+                      출처:{" "}
                       <a
                         href={`https://sepolia.etherscan.io/address/${donation.donator}`}
                         target="_blank"
@@ -148,34 +157,35 @@ const CampaignDetails = () => {
             </div>
           </div>
         </div>
+
         {getDaysLeft(campaign?.deadline) > 0 && (
           <div className="col-span-4 md:col-span-1 mt-8">
-            <h4 className="text-xl font-semibold uppercase">Fund</h4>
+            <h4 className="text-xl font-semibold uppercase">기부하기</h4>
             <form
               onSubmit={handleSubmit}
               className="bg-neutral-800 rounded-lg p-4"
             >
               <FormInput
-                label={"Amount"}
+                label={"금액"}
                 placeholder={"ETH 0.1"}
                 type={"number"}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
               <div className="bg-neutral-900 text-sm rounded-lg p-2 my-4">
-                <p>Back it because you believe in it.</p>
+                <p>이 프로젝트를 지지하는 마음으로 후원하세요.</p>
                 <p className="text-neutral-500 text-sm mt-2">
-                  Support the project for no reward, just because it speaks to
-                  you.
+                  리워드는 없지만 프로젝트의 메시지가 마음에 든다면
+                  기부해주세요.
                 </p>
               </div>
               <ClientButton
                 type="submit"
                 onClick={handleSubmit}
-                className="w-full font-semibold p-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition-all duration-200F"
+                className="w-full font-semibold p-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition-all duration-200"
                 loading={loading}
               >
-                Fund Campaign
+                기부하기
               </ClientButton>
             </form>
           </div>

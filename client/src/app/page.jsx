@@ -65,7 +65,7 @@ const Home = async () => {
         </div>
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
-            <h5 className="text-center mb-2">전체 캠페인 수</h5>
+            <h5 className="text-center mb-2">전체 모금 활동 수</h5>
             <p className="text-2xl font-semibold text-center">
               {campaignCount}
             </p>
@@ -79,17 +79,22 @@ const Home = async () => {
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
             <h5 className="text-center mb-2">모금된 이더리움</h5>
             <p className="text-2xl font-semibold text-center">
-              {totalCollected}
+              {totalCollected
+                ? parseFloat(totalCollected).toFixed(4)
+                : "0.0000"}
+              ETH
             </p>
           </div>
         </div>
       </div>
-      <h1 className="text-xl mb-4">가장 인기 있는 캠페인</h1>
+      <h1 className="text-xl mb-4">가장 인기 있는 모금 활동</h1>
       {campaigns?.length === 0 ? (
         <div className="flex flex-col  justify-center gap-4 mt-10">
-          <h1 className="text-4xl font-semibold">캠페인을 찾을 수 없습니다</h1>
+          <h1 className="text-4xl font-semibold">
+            모금 활동을 찾을 수 없습니다
+          </h1>
           <p className="text-lg text-neutral-400">
-            아직 생성된 캠페인이 없는 것 같습니다.
+            아직 생성된 모금 활동이 없는 것 같습니다.
           </p>
         </div>
       ) : (

@@ -25,7 +25,7 @@ const Searchbar = () => {
         onChange={(e) => setSearch(e.target.value)}
         type="text"
         className="w-full rounded-l-lg p-3 bg-neutral-800 outline-none placeholder:text-neutral-500"
-        placeholder="Search for campaign..."
+        placeholder="찾고자 하는 기부 활동을 검색하세요..."
       />
       <button
         onClick={handleSubmit}

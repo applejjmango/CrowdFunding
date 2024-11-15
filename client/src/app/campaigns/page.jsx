@@ -25,16 +25,18 @@ const Campaigns = async ({ searchParams }) => {
     <div>
       <h1 className="text-xl mb-4">
         {!searchParams.sort
-          ? `모든 모금 캠페인 (${campaigns?.length ?? 0})`
+          ? `모든 모금 활동 (${campaigns?.length ?? 0})`
           : searchParams.sort === "newest"
-          ? `최신 모금 캠페인 (${campaigns?.length ?? 0})`
-          : `상위 모금 캠페인 (${campaigns?.length ?? 0})`}
+          ? `최신 모금 활동 (${campaigns?.length ?? 0})`
+          : `상위 모금 활동 (${campaigns?.length ?? 0})`}
       </h1>
       {campaigns?.length === 0 ? (
-        <div className="flex flex-col  justify-center gap-4 mt-10">
-          <h1 className="text-4xl font-semibold">No Campaigns Found</h1>
+        <div className="flex flex-col justify-center gap-4 mt-10">
+          <h1 className="text-4xl font-semibold">
+            모금 활동을 찾을 수 없습니다
+          </h1>
           <p className="text-lg text-neutral-400">
-            It looks like there are no campaigns created yet.
+            아직 생성된 모금 활동이 없는 것 같습니다.
           </p>
         </div>
       ) : (

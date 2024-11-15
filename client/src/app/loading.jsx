@@ -9,7 +9,7 @@ const Loading = () => {
       <div className="animate-pulse flex flex-col items-center gap-2">
         <Image src={Logo} alt="pawfund" width={112} height={112} />
         <p className="text-2xl text-emerald-500 text-center font-bold mt-2">
-          Loading..
+          잠시만 기다려주세요!
         </p>
       </div>
     </div>

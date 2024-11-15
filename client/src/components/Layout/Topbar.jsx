@@ -49,7 +49,7 @@ const Topbar = () => {
               loading={loading}
               className="bg-emerald-500 hover:bg-emerald-600 transition-all duration-200 p-3 rounded-lg font-semibold"
             >
-              캠페인 생성
+              모금 활동 생성
             </ClientButton>
             <Link href="/account" className="bg-neutral-800 rounded-full p-3">
               <Image src={Logo} alt="user" width={24} height={24} />
@@ -89,7 +89,7 @@ const Topbar = () => {
               onClick={() => router.push("/create")}
               className="bg-emerald-500 hover:bg-emerald-600 transition-all flex justify-center duration-200 p-3 rounded-lg font-semibold w-full"
             >
-              캠페인 생성
+              새 모금 활동 만들기
             </ClientButton>
           ) : (
             <ClientButton

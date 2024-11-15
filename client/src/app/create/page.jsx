@@ -56,14 +56,14 @@ const Create = () => {
         { gasLimit: 1000000 }
       );
 
-      toast.success("캠페인이 성공적으로 생성되었습니다.");
+      toast.success("모금 활동이 성공적으로 생성되었습니다.");
       handleReset();
 
       setTimeout(() => {
         return router.push("/account");
       }, 2000);
     } catch (error) {
-      toast.error("캠페인을 생성할 수 없습니다.");
+      toast.error("모금 활동을 생성할 수 없습니다.");
     } finally {
       setLoading(false);
     }
@@ -83,7 +83,7 @@ const Create = () => {
     <main className="w-full bg-neutral-800 rounded-lg min-h-[calc(100vh-96px)]">
       <div className="m-auto w-content flex justify-center items-center p-4">
         <h1 className="bg-neutral-700 py-4 px-8 text-2xl font-semibold rounded-lg text-center w-content mx-auto">
-          캠페인 시작하기
+          모금 활동 시작하기
         </h1>
       </div>
       <form
@@ -92,7 +92,7 @@ const Create = () => {
       >
         <div className="flex-col flex md:flex-row gap-4">
           <FormInput
-            label={"캠페인 제목"}
+            label={"모금 활동 제목"}
             placeholder={"제목을 입력하세요..."}
             type={"text"}
             value={formValues.title}
@@ -100,7 +100,7 @@ const Create = () => {
           />
           <FormInput
             label={"이미지 URL"}
-            placeholder={"캠페인 이미지 URL을 입력하세요..."}
+            placeholder={"모금 활동 이미지 URL을 입력하세요..."}
             type={"text"}
             value={formValues.imageUrl}
             onChange={(e) => handleFormInputChange("imageUrl", e)}
@@ -108,7 +108,7 @@ const Create = () => {
         </div>
         <FormInput
           label={"스토리"}
-          placeholder={"이 캠페인의 필요성을 작성하세요..."}
+          placeholder={"이 모금 활동의 필요성을 작성하세요..."}
           type={"textarea"}
           value={formValues.description}
           onChange={(e) => handleFormInputChange("description", e)}
@@ -116,7 +116,7 @@ const Create = () => {
         <div className="flex items-center justify-around gap-4 bg-emerald-500 p-4 md:p-8 rounded-lg text-emerald-300">
           <FaEthereum className="text-5xl" />
           <span className="text-lg sm:text-xl md:text-2xl font-semibold">
-            투명한 캠페인 모금은 PawFund에서
+            투명한 모금 활동은 PawFund에서
           </span>
           <FaEthereum className="text-5xl" />
         </div>

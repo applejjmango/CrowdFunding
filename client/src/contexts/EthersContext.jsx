@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import SmartContract from "../../artifacts/contracts/CrowdFunding.sol/CrowdFunding.json";
+import SmartContract from "../../../smart-contract/artifacts/contracts/CrowdFunding.sol/CrowdFunding.json";
 
 const EthersContext = createContext();
 
@@ -18,7 +18,7 @@ export const EthersProvider = ({ children }) => {
 
   useEffect(() => {
     const initEthers = async () => {
-      const provider = new ethers.BrowserProvider(
+      const provider = new ethers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_PROVIDER_URL
       );
       const contractInstance = new ethers.Contract(
@@ -29,7 +29,11 @@ export const EthersProvider = ({ children }) => {
 
       setProvider(provider);
       setContract(contractInstance);
-      Cookie.get("isAllowed") && connectWallet();
+
+      // 자동으로 지갑 연결 시도
+      if (Cookie.get("isAllowed")) {
+        await connectWallet();
+      }
     };
 
     initEthers();
@@ -38,21 +42,25 @@ export const EthersProvider = ({ children }) => {
   const connectWallet = async () => {
     setLoading(true);
 
-    if (window.ethereum !== undefined) {
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-      const connectedProvider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await connectedProvider.getSigner();
-      const contractInstance = new ethers.Contract(
-        process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-        SmartContract["abi"],
-        signer
-      );
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const connectedProvider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await connectedProvider.getSigner();
+        const contractInstance = new ethers.Contract(
+          process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+          SmartContract["abi"],
+          signer
+        );
 
-      setSigner(signer);
-      setContract(contractInstance);
-      Cookie.set("isAllowed", true);
+        setSigner(signer);
+        setContract(contractInstance);
+        Cookie.set("isAllowed", true);
+      } catch (error) {
+        toast.error("Failed to connect wallet: " + error.message);
+      }
     } else {
-      toast.error("Please install Metamask to continue.");
+      toast.error("MetaMask is not installed. Please install it to continue.");
     }
 
     setLoading(false);

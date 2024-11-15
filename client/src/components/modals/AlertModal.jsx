@@ -29,8 +29,8 @@ const AlertModal = ({ setIsOpen, campaignId }) => {
       );
       console.log("res => ", res);
 
-      if (res.ok) toast.success(res.statusText);
-      else toast.error(res.statusText);
+      if (res.ok) toast.success("모금 활동이 성공적으로 종료되었습니다.");
+      else toast.error("모금 활동 종료에 실패했습니다.");
     }
 
     setIsOpen(false);
@@ -46,22 +46,22 @@ const AlertModal = ({ setIsOpen, campaignId }) => {
           <BiSolidErrorCircle className="mb-8 sm:mb-0 text-[148px] md:text-[164px] text-emerald-500" />
         </div>
         <div className="flex sm:block flex-col items-center gap-4 sm:gap-0">
-          <h3 className="font-semibold text-2xl">Are you sure?</h3>
+          <h3 className="font-semibold text-2xl">정말 종료하시겠습니까?</h3>
           <p className="text-center sm:text-start">
-            Are you sure you want to end this campaign?
+            이 모금 활동을 종료하시겠습니까? 이 작업은 되돌릴 수 없습니다.
           </p>
           <div className="mt-4 flex justify-center md:justify-end gap-4 font-semibold">
             <ClientButton
               onClick={() => handleClick("yes")}
               className="bg-emerald-500 border-2 border-emerald-500 py-2 px-4 rounded-lg hover:border-emerald-600 hover:bg-emerald-600 transition-all duration-200"
             >
-              Yes, end it.
+              네, 종료합니다.
             </ClientButton>
             <ClientButton
               onClick={() => handleClick("no")}
               className="border-2 border-emerald-500 text-emerald-500 py-2 px-4 rounded-lg hover:border-emerald-600 hover:bg-emerald-600 transition-all duration-200  hover:text-neutral-200"
             >
-              No
+              아니요
             </ClientButton>
           </div>
         </div>

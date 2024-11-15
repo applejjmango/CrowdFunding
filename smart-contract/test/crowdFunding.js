@@ -8,7 +8,7 @@ describe("CrowdFunding Contract", () => {
   let donor;
   let campaignId;
 
-  // 캠페인을 생성하는 헬퍼 함수
+  // 모금 활동을 생성하는 헬퍼 함수
   const createCampaign = async () => {
     const createCampaignTx = await crowdFunding.createCampaign(
       "Campaign Title",
@@ -19,7 +19,7 @@ describe("CrowdFunding Contract", () => {
     );
 
     await createCampaignTx.wait(1);
-    return 0; // 캠페인 ID를 반환 (첫 캠페인은 0번)
+    return 0; // 모금 활동 ID를 반환 (첫 모금 활동은 0번)
   };
 
   beforeEach(async () => {
@@ -27,7 +27,7 @@ describe("CrowdFunding Contract", () => {
     CrowdFunding = await ethers.getContractFactory("CrowdFunding");
     crowdFunding = await CrowdFunding.deploy(); // CrowdFunding 컨트랙트 배포
     await crowdFunding.waitForDeployment(); // 배포 완료될 때까지 대기
-    campaignId = await createCampaign(); // 테스트마다 새 캠페인 생성
+    campaignId = await createCampaign(); // 테스트마다 새 모금 활동 생성
   });
 
   it("should create a campaign", async () => {

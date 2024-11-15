@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components";
 import Logo from "/public/Logo.png";
 import { useEthersContext } from "@/contexts/EthersContext";
+import { toast } from "react-toastify";
 
 const Account = () => {
   const { signer } = useEthersContext();
@@ -46,7 +47,7 @@ const Account = () => {
         <div className="animate-pulse flex flex-col items-center gap-2">
           <Image src={Logo} alt="pawfund" width={112} height={112} />
           <p className="text-2xl text-emerald-500 text-center font-bold mt-2">
-            로딩 중..
+            동물 보호의 따뜻한 시작, PawFund와 함께해요!
           </p>
         </div>
       </div>
@@ -58,11 +59,19 @@ const Account = () => {
         <h1 className="text-2xl font-semibold">계정</h1>
         <div className="flex flex-col my-4">
           <span className="text-neutral-400">주소:</span>
-          <span className="text-neutral-300 truncate">{signer?.address}</span>
+          <span
+            className="text-neutral-300 truncate cursor-pointer hover:text-emerald-500"
+            onClick={() => {
+              navigator.clipboard.writeText(signer?.address);
+              toast.success("주소가 복사되었습니다!");
+            }}
+          >
+            {signer?.address}
+          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center justify-between gap-4">
           <div className="flex flex-col gap-2">
-            <span className="text-neutral-400">캠페인 수:</span>
+            <span className="text-neutral-400">모금 활동 수:</span>
             <span className="text-neutral-300">{campaigns?.length ?? 0}</span>
           </div>
           <div className="flex flex-col gap-2">
@@ -77,18 +86,22 @@ const Account = () => {
       </div>
       <div className="mt-4">
         {campaigns?.length === 0 ? (
-          <div className="flex flex-col  justify-center gap-4 mt-10">
-            <h1 className="text-xl">캠페인을 찾을 수 없습니다</h1>
+          <div className="flex flex-col justify-center gap-4 mt-10">
+            <h1 className="text-xl">모금 활동을 찾을 수 없습니다</h1>
             <p className="text-lg text-neutral-400">
-              새로 생성된 캠페인은 즉시 표시되지 않을 수 있습니다.
+              블록체인 네트워크 특성상 새로 생성된 모금 활동은 반영되기까지
+              시간이 걸릴 수 있습니다.
             </p>
           </div>
         ) : (
           <>
             <div className="mb-4 mt-8">
-              <h1 className="text-xl">내 캠페인 ({campaigns?.length ?? 0})</h1>
+              <h1 className="text-xl">
+                내 모금 활동 ({campaigns?.length ?? 0})
+              </h1>
               <p className="text-lg text-neutral-400">
-                새로 생성된 캠페인은 즉시 표시되지 않을 수 있습니다.
+                블록체인 네트워크 특성상 새로 생성된 모금 활동은 반영되기까지
+                시간이 걸릴 수 있습니다.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
